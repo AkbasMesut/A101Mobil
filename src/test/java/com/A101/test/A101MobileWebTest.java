@@ -65,6 +65,8 @@ public class A101MobileWebTest extends WebTestBase {
         }
 
         // Kulanıcı açılan pencerede Üye Olmadan Devam Et butonuna basar
+        WebDriverWait wait1 = new WebDriverWait(driver,15);
+        wait1.until(ExpectedConditions.elementToBeClickable((WebElement) driver.findElement(By.linkText("ÜYE OLMADAN DEVAM ET"))));
         driver.findElement(By.linkText("ÜYE OLMADAN DEVAM ET")).click();
 
         // Kullanıcı açılan pencereye Email adresini yazar ve Devam Et butonuna basar
@@ -78,7 +80,7 @@ public class A101MobileWebTest extends WebTestBase {
         driver.findElement(By.name("title")).sendKeys(faker.name().title());
         driver.findElement(By.name("first_name")).sendKeys(faker.name().name());
         driver.findElement(By.name("last_name")).sendKeys(faker.name().lastName()+ Keys.TAB);
-        driver.findElement(By.name("phone_number")).sendKeys("5321234567"+Keys.TAB);
+        driver.findElement(By.name("phone_number")).sendKeys(faker.bothify("(###)#######")+Keys.TAB);
         WebElement select1 =  driver.findElement(By.name("city"));
         Select il = new Select(select1);
         il.selectByVisibleText("ANKARA");
@@ -92,7 +94,8 @@ public class A101MobileWebTest extends WebTestBase {
         // Kullanıcı Açılan Kargo sayfasında Sendeo kargoyu seçer
         try{
             driver.findElement(By.xpath("//input[@value='333']")).click();
-        }catch (NoSuchElementException e){System.out.println("333 no such");}
+        }catch (NoSuchElementException e){
+            System.out.println("333 no such");}
 
         // Kullanıcı Kaydet ve Devam Et butonuna basar
         WebDriverWait wait = new WebDriverWait(driver,10);

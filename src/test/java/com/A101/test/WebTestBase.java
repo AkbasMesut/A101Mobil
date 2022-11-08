@@ -28,7 +28,7 @@ public abstract class WebTestBase {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
-        options.addArguments("--incognito");
+        options.addArguments("--lang=en-GB");
 
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
@@ -42,8 +42,6 @@ public abstract class WebTestBase {
         URL url = new URL("http://localhost:4723/wd/hub");
         driver = new RemoteWebDriver(url, desiredCapabilities);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-
 
     }
 
